@@ -9,6 +9,9 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
+const auth = firebase.auth();
+const db = firebase.firestore();
+
 const serviceWorkerRegistrationPromise =
 navigator.serviceWorker.register("./firebase-messaging-sw.js");
 const nameForm = document.getElementById("name-form");
@@ -600,17 +603,29 @@ allowButton.addEventListener("click", async function () {
       return;
     }
 
+    let user = auth.currentUser;
+    if (!user) {
+      const signInResult = await auth.signInAnonymously();
+      user = signInResult.user;
+    }
+
     const registration = await serviceWorkerRegistrationPromise;
     const token = await messaging.getToken({
       vapidKey: "BF26rEwEJraJW_RD8uNJE9cF5rWomxG18TSPRmvi-MbCGeUlfrkKuoA6gpYodp1eN1rt__lMB8i0aCUSBQhWRec",
       serviceWorkerRegistration: registration
     });
 
-    console.log("Notification setup worked.");
+    await db.collection("subscribers").doc(user.uid).set({
+      token: token,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    console.log("Notification subscription saved.");
     showHomeScreen();
   } catch (error) {
     console.error("Notification setup failed:", error);
     showHomeScreen();
   }
 });
+
 anotherMessageButton.addEventListener("click", showAnotherMessage);

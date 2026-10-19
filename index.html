@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Everyday!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+        <meta name="description" content="Everyday shares a thoughtful daily message to bring a little brightness to difficult days made by Hujjat Bin Maswood a student at the International Islamic University Chittagong. There are quotes from famous people, as well as original messages. But there's a catch - you can only see one message per day and also you will recieve one message or quote from Hujjat which are his original thoughts or messages. Everyday is a simple, yet powerful website that helps you stay motivated and inspired every day.">
+
+    </head>
+
+    <body>
+
+        <main>
+
+            <div class="intro-animation" aria-hidden="true">
+              <span class="paper-plane">➤</span>
+              
+            </div>
+
+
+            <section class="letter-card" id="welcome-screen">
+
+
+                <h1>Welcome</h1>
+                <p>What should we call you?</p>
+
+                <form id="name-form">
+                    <label for="visitor-name"></label>
+
+                    <input
+                     placeholder="Enter your name"
+                     type="text"
+                     id="visitor-name"
+                     name="visitor-name"
+                     autocomplete="given-name"
+                     required
+                    
+                    > 
+                    <button type="Submit">Next</button>
+                </form>
+
+            </section>
+
+            <section class="letter-card" id="notification-screen" hidden>
+
+            <h1>Daily messages?</h1>
+
+            <p>Would you like to allow notifications?</p>
+
+            <button type="button" id="allow-notifications">Allow notifications</button>
+
+            <button type="button" id="skip-notifications">Maybe later</button>
+
+            </section>
+
+            <section class="home-screen" id="home-screen" hidden>
+
+                <h1>Everyday</h1>
+                <h6>Daily messages to brighten your day</h6>
+
+                <p id="greeting"></p>
+
+             <article>
+                <p id="message-text">Your message will appear here.</p>
+                <p id="message-author"></p>
+             </article>
+
+                <button type="button" id="another-message">Get another message</button>
+
+            </section>
+
+        </main>
+        
+        <footer class="site-footer">
+         <p>&copy; 2026 Hujjat Bin Maswood</p>
+         </footer> 
+   
+
+        
+    </body>
+    
+</html>

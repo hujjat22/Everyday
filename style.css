@@ -1,0 +1,222 @@
+[hidden] {
+    display: none !important;
+}
+
+.home-screen {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 0 auto;
+    padding: 28px 0;
+    width: 100%;
+}
+
+.home-screen h1 {
+    color: lightseagreen;
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
+    margin: 0;
+    text-align: center;
+}
+
+#greeting {
+    font-size: 1.4rem;
+    margin: 0;
+    text-align: center;
+}
+
+.home-screen article {
+    background-color: #111817;
+    border: 1px solid lightseagreen;
+    border-radius: 16px;
+    padding: 22px 18px;
+}
+
+#message-text {
+    font-size: clamp(1.25rem, 5vw, 1.7rem);
+    line-height: 1.5;
+    margin: 0 0 20px;
+    overflow-wrap: anywhere;
+}
+
+#message-author {
+    color: lightseagreen;
+    font-weight: bold;
+    margin: 0;
+    text-align: right;
+}
+
+#another-message {
+    align-self: center;
+    width: 100%;
+    max-width: 280px;
+}
+
+@media (min-width: 600px) {
+    .home-screen {
+        gap: 22px;
+        padding-top: 40px;
+    }
+
+    .home-screen article {
+        padding: 30px;
+    }
+}
+
+
+
+body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #f4f7f3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1;
+}
+
+.letter-card {
+    background-color: lightseagreen;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.899);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 50px);
+    box-sizing: border-box;
+    color: #040404;
+    border: 4px solid #f4f7f3;
+}
+ 
+button {
+    background-color: #79b1ffa6;
+    color: #000000;
+    border: 2px solid #000000;
+    padding: 1px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align:center;
+    font-size: 16px;
+    margin-left: 6px;
+}
+button:hover {
+    background-color: #f4f7f3;
+    color: #000000;
+    border: 2px solid #000000;
+}
+h6 {
+    color: lightseagreen;
+    font-size: clamp(0.8rem, 5vw, 1.2rem);
+    margin: 0;
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.home-screen h1 {
+    font-size: clamp(2.8rem, 9vw, 5rem);
+    line-height: 1.1;
+}
+
+.home-screen h6 {
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
+    margin: 0 0 10px;
+}
+
+.home-screen article {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 680px;
+    padding: 20px 18px;
+    width: calc(100% - 32px);
+}
+
+#message-text {
+    font-size: clamp(1.1rem, 4vw, 1.6rem);
+}
+
+#another-message {
+    align-self: center;
+    box-sizing: border-box;
+    margin: 0;
+    max-width: calc(100% - 32px);
+    padding: 10px 18px;
+    width: fit-content;
+}
+#greeting,
+#message-text {
+    color: #e6f1ef;
+    font-weight: 700;
+}
+.site-footer {
+    color: #aebbb8;
+    font-size: 0.9rem;
+    padding: 16px;
+    margin-top: auto;
+    text-align: center;
+}
+
+.intro-animation {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    animation: intro-clear 0.35s ease 1.35s forwards;
+}
+
+.paper-plane {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    color: lightseagreen;
+    font-size: 3rem;
+    line-height: 1;
+    animation: plane-flight 1.4s ease-in-out forwards;
+}
+
+#welcome-screen {
+    animation: welcome-reveal 0.65s ease 1.05s both;
+}
+
+@keyframes plane-flight {
+    0% {
+        opacity: 0;
+        transform: translate(-55vw, -24vh) rotate(-35deg) scale(0.7);
+    }
+    12% {
+        opacity: 1;
+    }
+    55%, 67% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(-35deg) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(35vw, -25vh) rotate(10deg) scale(0.55);
+    }
+}
+
+@keyframes welcome-reveal {
+    from {
+        opacity: 0;
+        clip-path: inset(0 50% 0 50% round 10px);
+    }
+    to {
+        opacity: 1;
+        clip-path: inset(0 0 0 0 round 10px);
+    }
+}
+
+@keyframes intro-clear {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}

@@ -1,3 +1,16 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyAwGStX_l3lYOo2-9JT6dXZi6FWgWmiLd0",
+  authDomain: "everyday-d18d7.firebaseapp.com",
+  projectId: "everyday-d18d7",
+  storageBucket: "everyday-d18d7.firebasestorage.app",
+  messagingSenderId: "947679919385",
+  appId: "1:947679919385:web:a8c03040bb053a641a5988",
+  measurementId: "G-40R9L8Q7M9"
+};
+firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging();
+const serviceWorkerRegistrationPromise =
+navigator.serviceWorker.register("./firebase-messaging-sw.js");
 const nameForm = document.getElementById("name-form");
 const welcomeScreen = document.getElementById("welcome-screen");
 const notificationScreen = document.getElementById("notification-screen");
@@ -578,5 +591,26 @@ function showAnotherMessage() {
 }
 
 skipButton.addEventListener("click", showHomeScreen);
-allowButton.addEventListener("click", showHomeScreen);
+allowButton.addEventListener("click", async function () {
+  try {
+    const permission = await Notification.requestPermission();
+
+    if (permission !== "granted") {
+      showHomeScreen();
+      return;
+    }
+
+    const registration = await serviceWorkerRegistrationPromise;
+    const token = await messaging.getToken({
+      vapidKey: "BF26rEwEJraJW_RD8uNJE9cF5rWomxG18TSPRmvi-MbCGeUlfrkKuoA6gpYodp1eN1rt__lMB8i0aCUSBQhWRec",
+      serviceWorkerRegistration: registration
+    });
+
+    console.log("Notification setup worked.");
+    showHomeScreen();
+  } catch (error) {
+    console.error("Notification setup failed:", error);
+    showHomeScreen();
+  }
+});
 anotherMessageButton.addEventListener("click", showAnotherMessage);

@@ -1,4 +1,5 @@
 const admin = require("firebase-admin");
+const messages = require("./messages.js");
 
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
@@ -20,10 +21,12 @@ async function sendDailyMessage() {
     return;
   }
 
-  const notification = {
-    title: "Everyday!",
-    body: "Never ever give up! — Hujjat"
-  };
+ const dailyMessage = messages[Math.floor(Math.random() * messages.length)];
+
+const notification = {
+  title: "Everyday!",
+  body: `${dailyMessage.text} — ${dailyMessage.author}`
+};
 
   const results = await Promise.all(
     subscribers.map(async (doc) => {
